@@ -10,7 +10,9 @@ set(SOURCES
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-set(CMAKE_CXX_FLAGS "-Wall -O2")
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
+set(CMAKE_CXX_FLAGS "-std=c++2a -Wall -O2")
 
 add_executable(MazeSolver ${SOURCES})
 
