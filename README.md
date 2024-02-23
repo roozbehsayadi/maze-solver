@@ -10,9 +10,8 @@ The tweet: https://twitter.com/COOLSKELETON965/status/1757514471201783944
 # Compile
 mkdir -p build && cd build
 cmake ..
-cd ..
-cmake --build ./build
+cmake --build .
 
 # Run
-./build/maze-solver.out
+./MazeSolver
 ```
