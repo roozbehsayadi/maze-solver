@@ -6,6 +6,9 @@ The tweet: https://twitter.com/COOLSKELETON965/status/1757514471201783944
 
 # How to Compile and Run
 
+You need to have `CMake` and `OpenCV v4` installed on your computer.
+After that, compile the source codes and run the executable file:
+
 ```bash
 # Compile
 mkdir -p build && cd build
