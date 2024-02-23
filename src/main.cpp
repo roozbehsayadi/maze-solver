@@ -1,8 +1,13 @@
 
 #include <iostream>
 
-int main() {
-    std::cout << "Maze solved!" << std::endl;
+#include <opencv2/core.hpp>
 
-    return 0;
+
+int main() {
+	cv::Mat img;
+
+	std::cout << "Maze solved!" << std::endl;
+
+	return 0;
 }
