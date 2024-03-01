@@ -6,8 +6,19 @@ The tweet: https://twitter.com/COOLSKELETON965/status/1757514471201783944
 
 # How to Compile and Run
 
-You need to have `CMake` and `OpenCV v4` installed on your computer.
-After that, compile the source codes and run the executable file:
+You need to have these installed on your computer:
+* `CMake`
+* `OpenCV V4`
+* `SDL2`
+* `SDL2_Image`
+
+It took me DAYS to configure these libraries to work with my CMake configuration.
+Here's a couple of advices for you if you're trying to compile this code on your computer:
+* Install the libraries with their CMake files, not their packages on `apt`. In my experience, installing with `apt` does not generate their CMake files correctly.
+* Follow the installation steps thoroughly, or you may miss the `sudo make install` step like me.
+* If you have any problem compiling the code, use `--trace-expand` command to see the details of CMake process. `cmake --trace-expand --build . >trace.txt 2>&1 `
+
+After installing the requirements, compile the source codes and run the executable file:
 
 ```bash
 # Compile
