@@ -5,11 +5,23 @@
 
 #include "SDL2/SDL.h"
 
+#include "image.h"
+
 class SDLHandler {
 public:
 	static SDLHandler &getInstance();
 
 	SDLHandler();
+
+	~SDLHandler();
+
+	Image loadImage(const std::string &);
+
+	void showImage(Image &);
+
+	void showImageKeepRatio(Image &);
+
+	void update();
 
 	void setWindowCaption(const std::string &);
 

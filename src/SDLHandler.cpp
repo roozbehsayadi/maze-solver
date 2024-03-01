@@ -1,7 +1,4 @@
-
 #include "SDLHandler.h"
-
-#include <iostream>
 
 #include "SDL2/SDL_image.h"
 
@@ -25,6 +22,49 @@ SDLHandler::SDLHandler() {
 	if (SDL_CreateWindowAndRenderer(1024, 768, SDL_WINDOW_SHOWN, &window, &renderer) != 0) {
 		throw SDLException(SDL_GetError());
 	}
+}
+
+SDLHandler::~SDLHandler() {
+	SDL_DestroyWindow(window);
+	IMG_Quit();
+	SDL_Quit();
+}
+
+Image SDLHandler::loadImage(const std::string &filePath) {
+	auto image = Image(renderer, filePath);
+	return image;
+}
+
+void SDLHandler::showImage(Image &image) {
+	if (SDL_RenderCopy(renderer, image.texture, nullptr, nullptr) != 0) {
+		throw SDLException(SDL_GetError());
+	}
+}
+
+void SDLHandler::showImageKeepRatio(Image &image) {
+	auto imageRatio = double(image.h) / image.w;
+
+	int windowWidth, windowHeight;
+	SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+	auto windowRatio = double(windowHeight) / windowWidth;
+
+	int newWidth, newHeight;
+	if (imageRatio > windowRatio) {
+		newHeight = windowHeight;
+		newWidth = (double(newHeight)/windowHeight) * image.w;
+	} else {
+		newWidth = windowWidth;
+		newHeight = (double(newWidth)/windowWidth) * image.h;
+	}
+
+	SDL_Rect destRect{(windowWidth - newWidth) / 2, (windowHeight - newHeight) / 2, newWidth, newHeight};
+	if (SDL_RenderCopy(renderer, image.texture, nullptr, &destRect) != 0) {
+		throw SDLException(SDL_GetError());
+	}
+}
+
+void SDLHandler::update() {
+	SDL_RenderPresent(renderer);
 }
 
 void SDLHandler::setWindowCaption(const std::string &caption) {
