@@ -2,6 +2,7 @@
 #define MAZESOLVER_SDLHANDLER_H
 
 #include <string>
+#include <tuple>
 
 #include "SDL2/SDL.h"
 
@@ -19,7 +20,9 @@ public:
 
 	void showImage(Image &);
 
-	void showImageKeepRatio(Image &);
+	SDL_Rect showImageKeepRatio(Image &);
+
+	std::tuple<int, int> getClickPositionInImage(std::tuple<int, int>, SDL_Rect, Image &);
 
 	void update();
 
