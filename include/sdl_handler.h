@@ -7,6 +7,7 @@
 #include "SDL2/SDL.h"
 
 #include "image.h"
+#include "point.h"
 
 class SDLHandler {
 public:
@@ -22,7 +23,7 @@ public:
 
 	SDL_Rect showImageKeepRatio(Image &);
 
-	std::tuple<int, int> getClickPositionInImage(std::tuple<int, int>, SDL_Rect, Image &);
+	Point getClickPositionInImage(const Point &, SDL_Rect, Image &);
 
 	void update();
 

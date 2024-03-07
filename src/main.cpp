@@ -3,7 +3,9 @@
 #include <tuple>
 
 #include "sdl_handler.h"
+#include "maze_solver.h"
 #include "image.h"
+#include "point.h"
 
 const auto windowName = "window";
 const auto imagePath = "assets/maze_1.jpg";
@@ -16,10 +18,6 @@ enum state {
 	STATE_END,
 };
 
-std::ostream &operator<<(std::ostream &os, const std::tuple<int, int> &t) {
-	return os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ")";
-}
-
 std::ostream &operator<<(std::ostream &os, const SDL_Rect &rect) {
 	return os << "(" << rect.x << ", " << rect.y << ", " << rect.w << ", " << rect.h << ")";
 }
@@ -27,6 +25,8 @@ std::ostream &operator<<(std::ostream &os, const SDL_Rect &rect) {
 int main() {
 	auto sdlHandler = SDLHandler::getInstance();
 	sdlHandler.setWindowCaption(windowName);
+
+	auto mazeSolver = MazeSolver::getInstance();
 
 	auto image = sdlHandler.loadImage(imagePath);
 
@@ -36,7 +36,7 @@ int main() {
 
 	SDL_Event event;
 
-	std::tuple<int, int> startPoint{-1, -1}, endPoint{-1, -1};
+	Point startPoint{-1, -1}, endPoint{-1, -1};
 
 	auto currentState = STATE_GET_START_POINT;
 	std::cout << "Click on start point" << std::endl;
@@ -65,11 +65,10 @@ int main() {
 		}
 
 		if (currentState == STATE_CALCULATE_PATH) {
-			std::cout << "calculating path from "
-								<< sdlHandler.getClickPositionInImage(startPoint, imageDisplayRect, image)
-								<< " to "
-								<< sdlHandler.getClickPositionInImage(endPoint, imageDisplayRect, image)
-								<< std::endl;
+			auto startPointInImage = sdlHandler.getClickPositionInImage(startPoint, imageDisplayRect, image);
+			auto endPointInImage = sdlHandler.getClickPositionInImage(endPoint, imageDisplayRect, image);
+
+			mazeSolver.Solve(imagePath, startPointInImage, endPointInImage);
 			currentState = STATE_END;
 		}
 

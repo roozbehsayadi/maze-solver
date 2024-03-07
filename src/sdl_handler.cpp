@@ -65,18 +65,17 @@ SDL_Rect SDLHandler::showImageKeepRatio(Image &image) {
 	return destRect;
 }
 
-std::tuple<int, int>
-SDLHandler::getClickPositionInImage(
-		std::tuple<int, int> clickPosition,
+Point SDLHandler::getClickPositionInImage(
+		const Point &clickPosition,
 		SDL_Rect displayImageRect,
 		Image &originalImage) {
-	std::tuple<int, int> clickPositionInImage = {
-			std::get<0>(clickPosition) - displayImageRect.x,
-			std::get<1>(clickPosition) - displayImageRect.y,
+	Point clickPositionInImage = {
+			clickPosition.x - displayImageRect.x,
+			clickPosition.y - displayImageRect.y,
 	};
 
-	return {std::get<0>(clickPositionInImage) * ((double) originalImage.w / displayImageRect.w),
-					std::get<1>(clickPositionInImage) * ((double) originalImage.h / displayImageRect.h)};
+	return {static_cast<int>(clickPositionInImage.x * ((double) originalImage.w / displayImageRect.w)),
+					static_cast<int>(clickPositionInImage.y * ((double) originalImage.h / displayImageRect.h))};
 }
 
 void SDLHandler::update() {
