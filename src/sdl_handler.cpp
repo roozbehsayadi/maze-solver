@@ -1,4 +1,4 @@
-#include "SDLHandler.h"
+#include "sdl_handler.h"
 
 #include "SDL2/SDL_image.h"
 

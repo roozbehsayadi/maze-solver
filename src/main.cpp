@@ -2,7 +2,7 @@
 #include <iostream>
 #include <tuple>
 
-#include "SDLHandler.h"
+#include "sdl_handler.h"
 #include "image.h"
 
 const auto windowName = "window";

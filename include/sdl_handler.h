@@ -1,5 +1,5 @@
-#ifndef MAZESOLVER_SDLHANDLER_H
-#define MAZESOLVER_SDLHANDLER_H
+#ifndef MAZESOLVER_SDL_HANDLER_H
+#define MAZESOLVER_SDL_HANDLER_H
 
 #include <string>
 #include <tuple>
@@ -34,4 +34,4 @@ private:
 };
 
 
-#endif //MAZESOLVER_SDLHANDLER_H
+#endif //MAZESOLVER_SDL_HANDLER_H
