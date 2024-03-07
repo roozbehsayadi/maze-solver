@@ -21,6 +21,14 @@ void MazeSolver::Solve(
 		throw OpenCvException("could not load image " + filePath);
 	}
 
+	// get maze boundaries
+
+	// extract colors and create a vector from them
+
+	// run a path-finding algorithm
+
+	// return the path (or display it?)
+
 	cv::imshow("window name", image);
 
 	cv::waitKey();
