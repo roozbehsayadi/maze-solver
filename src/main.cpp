@@ -47,6 +47,10 @@ int main() {
 				return 0;
 			}
 
+			if (event.type == SDL_KEYDOWN)
+				if (event.key.keysym.sym == SDLK_q)
+					return 0;
+
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
 				if (currentState == STATE_GET_START_POINT) {
 					startPoint = {event.button.x, event.button.y};
