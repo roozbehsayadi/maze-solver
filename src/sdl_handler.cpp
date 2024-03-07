@@ -49,7 +49,11 @@ SDL_Rect SDLHandler::showImageKeepRatio(Image &image) {
 	auto windowRatio = double(windowHeight) / windowWidth;
 
 	int newWidth, newHeight;
-	if (imageRatio > windowRatio) {
+
+	if (imageRatio == windowRatio) {
+		newWidth = windowWidth;
+		newHeight = windowHeight;
+	} else if (imageRatio > windowRatio) {
 		newHeight = windowHeight;
 		newWidth = (double(newHeight) / windowHeight) * image.w;
 	} else {
