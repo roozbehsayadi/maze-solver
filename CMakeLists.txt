@@ -5,7 +5,7 @@ project(MazeSolver)
 include_directories(include/)
 
 set(SOURCES
-        src/main.cpp src/sdl_handler.cpp src/exceptions/sdl_exception.cpp src/image.cpp src/maze_solver.cpp src/point.cpp)
+        src/main.cpp src/sdl_handler.cpp src/exceptions/sdl_exception.cpp src/image.cpp src/maze_solver.cpp src/point.cpp include/exceptions/opencv_exception.h src/exceptions/opencv_exception.cpp)
 
 find_package(SDL2 REQUIRED)
 set(SDL2_LIBRARIES -lSDL2)

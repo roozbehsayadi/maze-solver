@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+#include <opencv2/opencv.hpp>
+
+#include "exceptions/opencv_exception.h"
+
 MazeSolver &MazeSolver::getInstance() {
 	static MazeSolver mazeSolver;
 	return mazeSolver;
@@ -12,5 +16,12 @@ void MazeSolver::Solve(
 		const std::string &filePath,
 		Point &startPoint,
 		Point &endPoint) {
-	std::cout << "Found the path from " << startPoint << " to " << endPoint << std::endl;
+	auto image = cv::imread(filePath, cv::IMREAD_COLOR);
+	if (image.empty()) {
+		throw OpenCvException("could not load image " + filePath);
+	}
+
+	cv::imshow("window name", image);
+
+	cv::waitKey();
 }
