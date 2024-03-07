@@ -5,7 +5,7 @@
 
 class SDLException : public std::exception {
 public:
-	explicit SDLException(const std::string &);
+	explicit SDLException(std::string );
 
 	SDLException(const SDLException &) = default;
 
