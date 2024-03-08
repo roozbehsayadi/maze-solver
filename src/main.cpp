@@ -7,7 +7,7 @@
 #include "image.h"
 #include "point.h"
 
-const auto windowName = "window";
+const auto windowName = "MazeSolver";
 const auto imagePath = "assets/maze_1.jpg";
 
 enum state {
