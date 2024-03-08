@@ -2,6 +2,7 @@
 #define MAZESOLVER_MAZE_SOLVER_H
 
 #include <tuple>
+#include <vector>
 
 #include "opencv2/opencv.hpp"
 
@@ -9,10 +10,17 @@
 
 class MazeSolver {
 public:
-	void Solve(const std::string &, Point &, Point &);
+	std::vector<Point> Solve(const std::string &, Point &, Point &);
 
 private:
-	std::tuple<Point, Point> getImageBoundaries(cv::Mat &);
+	typedef std::vector<bool> GridRow;
+	typedef std::vector<GridRow> Grid;
+
+	static std::tuple<Point, Point> getImageBoundaries(cv::Mat &);
+
+	static Grid buildGridVector(cv::Mat &image);
+
+	static std::vector<Point> getPath(const Grid &, Point &, Point &);
 };
 
 #endif //MAZESOLVER_MAZE_SOLVER_H

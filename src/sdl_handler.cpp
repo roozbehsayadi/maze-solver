@@ -69,17 +69,30 @@ SDL_Rect SDLHandler::showImageKeepRatio(Image &image) {
 	return destRect;
 }
 
-Point SDLHandler::getClickPositionInImage(
-		const Point &clickPosition,
+void SDLHandler::setColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a) {
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+}
+
+void SDLHandler::drawLine(const Point &p1, const Point &p2) {
+	SDL_RenderDrawLine(renderer, p1.x, p1.y, p2.x, p2.y);
+}
+
+Point SDLHandler::getPointPositionInImage(
+		const Point &point,
 		SDL_Rect displayImageRect,
 		Image &originalImage) {
-	Point clickPositionInImage = {
-			clickPosition.x - displayImageRect.x,
-			clickPosition.y - displayImageRect.y,
+	Point positionInImage = {
+			point.x - displayImageRect.x,
+			point.y - displayImageRect.y,
 	};
 
-	return {static_cast<int>(clickPositionInImage.x * ((double) originalImage.w / displayImageRect.w)),
-					static_cast<int>(clickPositionInImage.y * ((double) originalImage.h / displayImageRect.h))};
+	return {static_cast<int>(positionInImage.x * ((double) originalImage.w / displayImageRect.w)),
+					static_cast<int>(positionInImage.y * ((double) originalImage.h / displayImageRect.h))};
+}
+
+Point SDLHandler::getPointPositionInScreen(const Point &point, SDL_Rect displayImageRect, Image &originalImage) {
+	return {static_cast<int>(point.x * ((double) displayImageRect.w / originalImage.w)),
+					static_cast<int>(point.y * ((double) displayImageRect.h / originalImage.h))};
 }
 
 void SDLHandler::update() {

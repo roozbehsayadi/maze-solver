@@ -15,7 +15,9 @@ enum state {
 	STATE_GET_START_POINT,
 	STATE_GET_END_POINT,
 	STATE_CALCULATE_PATH,
-	STATE_END,
+	STATE_FOUND_PATH,
+	STATE_DIDNT_FIND_PATH,
+	STATE_WAITING_FOR_CLOSE,
 };
 
 std::ostream &operator<<(std::ostream &os, const SDL_Rect &rect) {
@@ -37,6 +39,7 @@ int main() {
 	SDL_Event event;
 
 	Point startPoint{-1, -1}, endPoint{-1, -1};
+	std::vector<Point> path;
 
 	auto currentState = STATE_GET_START_POINT;
 	std::cout << "Click on start point" << std::endl;
@@ -45,6 +48,10 @@ int main() {
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT) {
 				return 0;
+			}
+
+			if (currentState == STATE_WAITING_FOR_CLOSE) {
+				continue;
 			}
 
 			if (event.type == SDL_KEYDOWN)
@@ -65,15 +72,38 @@ int main() {
 		}
 
 		if (currentState == STATE_CALCULATE_PATH) {
-			auto startPointInImage = sdlHandler.getClickPositionInImage(startPoint, imageDisplayRect, image);
-			auto endPointInImage = sdlHandler.getClickPositionInImage(endPoint, imageDisplayRect, image);
+			auto startPointInImage = sdlHandler.getPointPositionInImage(startPoint, imageDisplayRect, image);
+			auto endPointInImage = sdlHandler.getPointPositionInImage(endPoint, imageDisplayRect, image);
 
-			mazeSolver.Solve(imagePath, startPointInImage, endPointInImage);
-			currentState = STATE_END;
+			path = mazeSolver.Solve(imagePath, startPointInImage, endPointInImage);
+
+			if (path.empty()) {
+				currentState = STATE_DIDNT_FIND_PATH;
+				std::cout << "No paths found" << std::endl;
+			} else {
+				currentState = STATE_FOUND_PATH;
+				std::cout << "Found path!" << std::endl;
+			}
 		}
 
-		if (currentState == STATE_END) {
+		if (currentState == STATE_DIDNT_FIND_PATH) {
 			break;
+		}
+
+		if (currentState == STATE_FOUND_PATH) {
+			sdlHandler.setColor(255, 0, 0, 255);
+
+			for (size_t i = 0; i < path.size() - 1; i++) {
+				auto p1 = path.at(i), p2 = path.at(i + 1);
+				sdlHandler.drawLine(
+						sdlHandler.getPointPositionInScreen(p1, imageDisplayRect, image),
+						sdlHandler.getPointPositionInScreen(p2, imageDisplayRect, image)
+				);
+			}
+
+			sdlHandler.update();
+
+			currentState = STATE_WAITING_FOR_CLOSE;
 		}
 	}
 

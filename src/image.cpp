@@ -10,14 +10,6 @@ Image::Image(SDL_Renderer *renderer, const std::string &filePath) {
 	loadFromFile(renderer, filePath);
 }
 
-Image::Image(const Image &other) {
-	std::cout << "copying image" << std::endl;
-}
-
-Image::Image(const Image &&other) {
-	std::cout << "moving image" << std::endl;
-}
-
 Image::~Image() {
 	SDL_DestroyTexture(texture);
 	texture = nullptr;

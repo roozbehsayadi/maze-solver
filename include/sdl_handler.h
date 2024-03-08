@@ -23,7 +23,13 @@ public:
 
 	SDL_Rect showImageKeepRatio(Image &);
 
-	Point getClickPositionInImage(const Point &, SDL_Rect, Image &);
+	void setColor(unsigned char, unsigned char, unsigned char, unsigned char);
+
+	void drawLine(const Point &, const Point &);
+
+	Point getPointPositionInImage(const Point &point, SDL_Rect displayImageRect, Image &originalImage);
+
+	Point getPointPositionInScreen(const Point &point, SDL_Rect displayImageRect, Image &originalImage);
 
 	void update();
 

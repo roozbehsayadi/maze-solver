@@ -20,7 +20,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 
-set(CMAKE_CXX_FLAGS "-std=c++2a -Wall -O2")
+set(CMAKE_CXX_FLAGS "-std=c++2a -Wall -O0")
 
 add_executable(MazeSolver ${SOURCES})
 

@@ -12,7 +12,9 @@ class Image {
 
 public:
 	Image(SDL_Renderer *, const std::string &filePath);
+
 	Image(const Image &);
+
 	Image(const Image &&);
 
 	~Image();
@@ -24,7 +26,7 @@ public:
 private:
 	void setSize();
 
-	SDL_Texture *texture;
+	SDL_Texture *texture = nullptr;
 	int w, h;
 };
 

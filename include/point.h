@@ -5,6 +5,9 @@
 
 struct Point {
 	int x, y;
+
+	bool operator==(const Point &) const;
+	bool operator!=(const Point &) const;
 };
 
 std::ostream &operator<<(std::ostream &output, const Point &H);
