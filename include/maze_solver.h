@@ -9,12 +9,10 @@
 
 class MazeSolver {
 public:
-	static MazeSolver &getInstance();
-
 	void Solve(const std::string &, Point &, Point &);
 
 private:
-	std::tuple<Point, Point> getImageBoundaries(cv::Mat &, Point &);
+	std::tuple<Point, Point> getImageBoundaries(cv::Mat &);
 };
 
 #endif //MAZESOLVER_MAZE_SOLVER_H

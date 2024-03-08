@@ -7,11 +7,6 @@
 
 #include "exceptions/opencv_exception.h"
 
-MazeSolver &MazeSolver::getInstance() {
-	static MazeSolver mazeSolver;
-	return mazeSolver;
-}
-
 void MazeSolver::Solve(
 		const std::string &filePath,
 		Point &startPoint,
@@ -22,9 +17,9 @@ void MazeSolver::Solve(
 	}
 
 	// get maze boundaries
-	auto imageBoundaries = getImageBoundaries(image, startPoint);
+	auto imageBoundaries = getImageBoundaries(image);
 
-	// extract colors and create a vector from them
+	// extract colors and create a path vector from them
 
 	// run a path-finding algorithm
 
@@ -35,6 +30,6 @@ void MazeSolver::Solve(
 	cv::waitKey();
 }
 
-std::tuple<Point, Point> MazeSolver::getImageBoundaries(cv::Mat &image, Point &point) {
+std::tuple<Point, Point> MazeSolver::getImageBoundaries(cv::Mat &image) {
 	return {Point{0, 0}, Point{image.cols, image.rows}};
 }

@@ -26,7 +26,7 @@ int main() {
 	auto sdlHandler = SDLHandler::getInstance();
 	sdlHandler.setWindowCaption(windowName);
 
-	auto mazeSolver = MazeSolver::getInstance();
+	MazeSolver mazeSolver;
 
 	auto image = sdlHandler.loadImage(imagePath);
 
