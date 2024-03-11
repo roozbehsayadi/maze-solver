@@ -1,10 +1,19 @@
 # Maze Solver
 
+## Origin Story
+
 I saw a tweet some time ago, That someone had shared a gigantic maze made by himself. I wanted to write a hobby project for some time, so I grabbed the opportunity and wrote a code to solve it for me.
 
 The tweet: https://twitter.com/COOLSKELETON965/status/1757514471201783944
 
-# How to Compile and Run
+## What Can it Do
+
+With latest changes, this project can solve the maze `maze_1.jpg` available in the `assets` folder. 
+Run the program, click on two points to determine the start and the end point, and the watch it represent a path between these points.
+
+Currently, it's a super-simple project with the most basic approach to the problem. It will get better in future (a near one, I hope).
+
+## How to Compile and Run
 
 You need to have these installed on your computer:
 * `CMake`
