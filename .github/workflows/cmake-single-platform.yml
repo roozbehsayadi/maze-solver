@@ -27,7 +27,7 @@ jobs:
       with:
         path: |
           ~/.cache
-        key: ${{ runner.os }}-deps-${{ hashFiles('**/CMakeLists.txt') }}
+        key: ${{ runner.os }}-deps
 
     - name: Update packges
       run: sudo apt update
