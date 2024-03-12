@@ -45,6 +45,7 @@ jobs:
           cmake ..
           cmake --build .
         fi;
+        cd "$HOME/.cache/opencv/build";
         sudo make install;
 
     - name: Install SDL2_image
@@ -57,6 +58,7 @@ jobs:
           cmake ..
           cmake --build .
         fi;
+        cd "$HOME/.cache/SDL_image/build";
         sudo make install;
 
     - name: Configure CMake
