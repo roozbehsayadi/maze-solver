@@ -34,13 +34,20 @@ std::tuple<Point, Point> MazeSolver::getImageBoundaries(cv::Mat &image) {
 }
 
 MazeSolver::Grid MazeSolver::buildGridVector(cv::Mat &image) {
+	cv::Mat blackAndWhite;
+	cv::threshold(image, blackAndWhite, 127, 255, cv::THRESH_BINARY);
+
 	Grid returnValue = Grid(image.rows, GridRow(image.cols));
 
-	for (auto i = 0; i < image.rows; i++) {
-		for (auto j = 0; j < image.cols; j++) {
-			auto color = image.at<uchar>(i, j);
+	for (auto i = 0; i < blackAndWhite.rows; i++) {
+		for (auto j = 0; j < blackAndWhite.cols; j++) {
+			auto color = blackAndWhite.at<uchar>(i, j);
 
-			returnValue.at(i).at(j) = color > 127;
+			if (color == 0) {
+				returnValue.at(i).at(j) = false;
+			} else {
+				returnValue.at(i).at(j) = true;
+			}
 		}
 	}
 
