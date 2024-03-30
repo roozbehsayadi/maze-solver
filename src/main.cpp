@@ -30,6 +30,7 @@ int main() {
 
 	MazeSolver mazeSolver;
 
+	auto currentState = STATE_START;
 	auto image = sdlHandler.loadImage(imagePath);
 
 	auto imageDisplayRect = sdlHandler.showImageKeepRatio(image);
@@ -41,7 +42,7 @@ int main() {
 	Point startPoint{-1, -1}, endPoint{-1, -1};
 	std::vector<Point> path;
 
-	auto currentState = STATE_GET_START_POINT;
+	currentState = STATE_GET_START_POINT;
 	std::cout << "Click on start point" << std::endl;
 
 	while (true) {
