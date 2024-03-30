@@ -35,7 +35,7 @@ std::tuple<Point, Point> MazeSolver::getImageBoundaries(cv::Mat &image) {
 
 MazeSolver::Grid MazeSolver::buildGridVector(cv::Mat &image) {
 	cv::Mat blackAndWhite;
-	cv::threshold(image, blackAndWhite, 127, 255, cv::THRESH_BINARY);
+	cv::threshold(image, blackAndWhite, 200, 255, cv::THRESH_BINARY);
 
 	Grid returnValue = Grid(image.rows, GridRow(image.cols));
 
